@@ -1,0 +1,13 @@
+<!doctype html>
+
+<html>
+<body>
+<form method= 'post' action= '/'>
+  Enter URL:<input type= 'text' name= 'url'/>
+  <br/>
+  <input type = 'submit' value= 'Shorten me!'/>
+{% if shorten_url %}
+  <p>{{shorten_url}}</p>
+{% endif %}
+</body>
+</html>
