@@ -8,3 +8,14 @@ numpy==1.7.1
 py-sample==0.1
 virtualenv==1.10.1
 wsgiref==0.1.2
+Flask==0.10.1
+Flask-RESTful==0.2.5
+Jinja2==2.7.1
+MarkupSafe==0.18
+Werkzeug==0.9.4
+git-remote-helpers==0.1.0
+itsdangerous==0.23
+numpy==1.7.1
+py-sample==0.1
+virtualenv==1.10.1
+wsgiref==0.1.2
