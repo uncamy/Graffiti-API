@@ -1,5 +1,7 @@
 import sqlite3
 import string
+import pandas as pd
+
 from pygeocoder import Geocoder
 from flask  import Flask, request, session, g, redirect, url_for,\
                   abort, render_template, flash, json
@@ -16,11 +18,19 @@ PASSWORD = 'default'
 app = Flask(__name__)
 api = restful.Api(app)
 
+
 graffiti = {}
+graffiti = r.json
 
 def geocode(address):
     lat_lon = Geocoder.geocode(address)
-    print(lat_lon[0].coordinates)
+    return(lat_lon[0].coordinates)
 
+print(geocode('455 Broadway, New York, NY 10013'))
 
-geocode('455 Broadway, New York, NY 10013')
+def convert_geocode(address):
+    geocode(address)
+    x= lat_lon[0]
+    y= lat_lon[1]
+    print x
+    print y
