@@ -2,7 +2,6 @@ import sqlite3
 import pandas as pd
 from contextlib import closing
 
-db_file = 'nyc_graffiti.db'
 
 def create_database(db_file, schem, csv):
     def init_db():
@@ -15,12 +14,6 @@ def create_database(db_file, schem, csv):
         graff_data = pd.read_csv('./Graffiti_Locations.csv')
         for row in graff_data:
             add_row(row)
-
-def add_row(row):
-    if obs_in_db(row[0]):
-        insert(db_file, 'INSERT INTO graff_nyc_data\
-        (incident_address, borough, data_created, status, lat, lon)\
-        VALUES (?, ?, ?, ?, ?, ?)', row)
 
 def connect_db(db_file=db_file):
     return sqlite3.connect(db_file)
@@ -45,3 +38,12 @@ def delete(database, query, items):
     with closing(connect_db(database)) as db:
         db.execute(query, items)
         db.commit
+
+def add_row(row):
+    insert(db_file, 'INSERT INTO graff_nyc_data\
+        (incident_address, borough, data_created, status, lat, lon)\
+        VALUES (?, ?, ?, ?, ?, ?)', row)
+
+def add_latlon():
+    insert(db_file, 'INSERT INTO graff_nyc_data (lat, lon) VALUES (?,?)',\
+           (lat, lon)
