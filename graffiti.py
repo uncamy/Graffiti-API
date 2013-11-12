@@ -1,3 +1,4 @@
+import os
 import sqlite3
 import string
 import pandas as pd
@@ -11,16 +12,13 @@ from contextlib import closing
 #configuration
 DATABASE = 'data_graffiti.db'
 DEBUG = True
-SECRET_KEY = 'development key'
-USERNAME = 'admin'
-PASSWORD = 'default'
+SECRET_KEY = 'graffiti_key'
+SCHEMA = 'schema.sql'
+CSV = 'Graffiti_Locations.csv'
 
 app = Flask(__name__)
 api = restful.Api(app)
 
-
-graffiti = {}
-graffiti = r.json
 
 def geocode(address):
     lat_lon = Geocoder.geocode(address)
