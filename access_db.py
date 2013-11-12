@@ -13,9 +13,14 @@ def create_database(db_file, schem, csv):
 
     def generate_db_from_csv():
         graff_data = pd.read_csv('./Graffiti_Locations.csv')
+        for row in graff_data:
+            add_row(row)
 
-    init_db()
-    generate_db_from_csv()
+def add_row(row):
+    if obs_in_db(row[0]):
+        insert(db_file, 'INSERT INTO graff_nyc_data\
+        (incident_address, borough, data_created, status, lat, lon)\
+        VALUES (?, ?, ?, ?, ?, ?)', row)
 
 def connect_db(db_file=db_file):
     return sqlite3.connect(db_file)
