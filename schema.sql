@@ -1,12 +1,9 @@
-create table url_entry (
+create table graff_nyc_data (
        id integer primary key autoincrement,
+       incident_address text not null,
        borough text not null,
-       date_spotted date not null
-       status text not null
-       date_closed date not null
-       address text not null
-       x float not null
-       y float not null
-       lat float not null
-       lon float not null
+       date_created text not null,
+       status text not null,
+       lat  real,
+       lon real
 );
