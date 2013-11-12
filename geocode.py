@@ -1,15 +1,14 @@
 import sqlite3
 import pandas as pd
-import access_db as data
+import access_db as db
 from pygeocoder import Geocoder
-
 
 db_file = 'nyc_graffiti.db'
 schema = 'schema.sql'
 csv = 'Graffiti_Locations.csv'
 
 
-graffiti = data.create_database(db_file, schema, csv)
+
 
 def geocode(address):
     lat_lon = Geocoder.geocode(address)
@@ -17,8 +16,7 @@ def geocode(address):
 
 def convert_geocode():
     graff_add= graff_data['Incident Address Display']
-    geocode(graff_add)
-    return geocode
+    (lat, lon) = geocode(graff_add)
+    return (lat, lon)
 
-#graff_coded= convert_geocode()
-# runs for-ev-er
+db.create_database(db_file, schema, csv)
