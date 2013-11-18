@@ -1,40 +1,47 @@
 import sqlite3
 import pandas as pd
 from pygeocoder import Geocoder
+from time import sleep
 
 
+graffiti = pd.read_csv('./Graffiti_Locations.csv')
 
-data_file = pd.read_csv('./Graffiti_Locations.csv')
-address_field = 'Incident Address Display' #input address available in dataset
-
+count = 0
 
 def geocode(address):
     lat_lon = Geocoder.geocode(address)
+    sleep(2)
+    count += 1
+    print ('geocode %d' % count)
     return(lat_lon[0].coordinates)
 
-address = data_file[address_field]
+#setting up data:
+#filter by bourough to only get Manhattan Graffiti that is 'open'
+manhattan = graffiti[graffiti['Borough']== 'MANHATTAN']
+current_graffiti = manhattan[manhattan['Status']== 'Open']
 
-# need to add city state to addressess in this dataset before geocode
- #getting ambigous error... array with more than one element is ambiguous use a.any or an.all
-def add_city_state():
-    if (data_file['Borough'] == 'Queens'):
-        full_address = address + 'QUEENS, NEW YORK'
-    elif(data_file['Borough']== 'BROOKLYN'):
-        full_address = address + 'BROOKLYN, NEW YORK'
-    elif(data_file['Borough'] == 'STATEN ISLAND'):
-        full_address = address + 'STATEN ISLAND, NEW YORK'
-    else:
-        full_address = address + 'NEW YORK, NEW YORK'
-    return full_address
+#add new column for the address
+current_graffiti['full_address'] = \
+        current_graffiti['Incident Address Display'] + ', NEW YORK, NEW YORK'
 
+
+#geocode data with pauses
+current_graffiti['geocode'] = \
+                current_graffiti['full_address'].map(geocode)
+
+current_graffiti.to_csv =('graffiti_geocode.csv')
+
+
+'''
 reduced_dataset = address[:10]
-graff_data[]
+#graff_data[]
 
 #correct for borough
 full_address = address + ' NEW YORK, NEW YORK'
-for row in full_addy:
+for row in full_address:
     lat = geocode(row)
     #return lat, lon
 
 #use map function
 #e.g. reduced_dataset.map(geocode)
+'''
