@@ -6,13 +6,10 @@ from time import sleep
 
 graffiti = pd.read_csv('./Graffiti_Locations.csv')
 
-count = 0
-
+#geocode data with pauses
 def geocode(address):
     lat_lon = Geocoder.geocode(address)
     sleep(2)
-    count += 1
-    print ('geocode %d' % count)
     return(lat_lon[0].coordinates)
 
 #setting up data:
@@ -25,11 +22,17 @@ current_graffiti['full_address'] = \
         current_graffiti['Incident Address Display'] + ', NEW YORK, NEW YORK'
 
 
-#geocode data with pauses
-current_graffiti['geocode'] = \
+#geocode data and catch errors
+def address2geocode():
+    print 'starting geocoding'
+    try:
+        current_graffiti['geocode'] = \
                 current_graffiti['full_address'].map(geocode)
+    except:
+        current_graffiti['geocode'] = None
+    print 'end geocoding'
 
-current_graffiti.to_csv =('graffiti_geocode.csv')
+pd.current_graffiti.to_csv =('graffiti_geocode.csv')
 
 
 '''
