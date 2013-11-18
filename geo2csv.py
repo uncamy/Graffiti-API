@@ -32,7 +32,8 @@ def address2geocode():
         current_graffiti['geocode'] = None
     print 'end geocoding'
 
-current_graffiti.to_csv =('graffiti_geocode.csv')
+address2geocode()
+current_graffiti.to_csv('graffiti_geocode.csv')
 
 
 '''
