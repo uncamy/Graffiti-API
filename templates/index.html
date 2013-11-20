@@ -39,10 +39,17 @@
           <label>
             Type your address:
           </label>
-          <input type="search" class="form-control" placeholder="455 Broadway, New York, NY">
+          <form method= 'post' action= '/'>
+          <input type="text" name= "address" class="form-control" placeholder="e.g. 455 Broadway, New York, NY">
+          <br/>
+          <input type = 'submit' value = 'Get Graffiti!' />
         </div>
+        {% if graffiti %}
+         <p>{{graffiti}}</p>
+        {% endif %}
       </div>
       <hr>
+
       <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <style type="text/css">
@@ -51,7 +58,7 @@
       #map-canvas { height: 100% }
     </style>
     <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=API_KEY&sensor=FALSE">
+      src="https://maps.googleapis.com/maps/api/js?key={API_KEY}&sensor=FALSE">
     </script>
     <script type="text/javascript">
       function initialize() {
