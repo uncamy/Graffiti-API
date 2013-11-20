@@ -1,10 +1,11 @@
 /*javascript needed for google maps rendering */
 
-var latlng= new google.maps.LatLng(40.72078, -74.001119);
+/*var latlng= new google.maps.LatLng(document.getElementById("user_loc")); */
+var latlng = new google.maps.LatLng('40.72078, -74.001119');
 
 function initialize(){
     var mapOptions = {
-          center: latlng,y
+          center: latlng,
           zoom: 15
     }
 
