@@ -29,14 +29,17 @@ def geocode(address):
     return(lat_lon[0].coordinates)
 
 def locations(address):
-    return address
+    geo_loc = geocode(address)
+    return geo_loc
 
 @app.route('/', methods = ['GET', 'POST'])
 def index():
     if request.method == 'POST':
         address = request.form['address']
-        graffiti = locations(address)
-    return render_template('index.html', graffiti = graffiti)
+        find_loc = locations(address)
+        return render_template('index.html', graffiti = find_loc)
+    else:
+        return render_template('index.html')
 
 if __name__ == '__main__':
     app.run()
