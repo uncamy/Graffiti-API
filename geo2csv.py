@@ -18,7 +18,6 @@ def geocode(address):
 #filter by bourough to only get Manhattan Graffiti that is 'open'
 manhattan = graffiti[graffiti['Borough']== 'MANHATTAN']
 current_graffiti = manhattan[manhattan['Status']== 'Open'][600:]
-
 #add new column for the address
 current_graffiti['full_address'] = \
         current_graffiti['Incident Address Display'] + ', NEW YORK, NEW YORK'

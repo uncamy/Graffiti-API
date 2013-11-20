@@ -4,7 +4,7 @@ import string
 import pandas as pd
 
 from geopy.geocoders import GoogleV3
-from geopy.distance import vincenty
+import geopy.distance
 from googlemap import GoogleMaps
 import api_key
 
@@ -33,7 +33,7 @@ def geocode(address):
 def index():
     if request.method == 'POST':
         address = request.form['address']
-    return render_template('index.html')
+    return render_template('index.html', address)
 
 if __name__ == '__main__':
     app.run()
