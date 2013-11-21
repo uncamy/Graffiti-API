@@ -57,6 +57,10 @@
         </div>
        </div>
      </div>
+    {% if error %}
+      <p> {{error}} </p>
+    {% endif %}
+
     {% if your_loc %}
           <div id="user_loc">{{your_loc}}</div>
           <script>
@@ -72,6 +76,6 @@
             <div id="map-canvas">
             </div>
           </div>
-        {% endif %}
+    {% endif %}
     <hr>
   </body>

@@ -41,11 +41,8 @@ df['lng'] = geo_pairs.map(lambda x: x[1])
 #df.to_csv('./data/final_data.csv')
 
 def geocode(address):
-    try:
-        lat_lon = Geocoder.geocode(address)
-        return(lat_lon[0].coordinates)
-    except:
-        return 'unable to geocode'
+    lat_lon = Geocoder.geocode(address)
+    return(lat_lon[0].coordinates)
 
 #test address
 def locations(address):
@@ -57,6 +54,7 @@ def vicinity(geo_loc):
     distance = 0.000001
     lat = geo_loc[0]
     lng = geo_loc[1]
+
     lat_max = lat + distance
     lat_min = lat - distance
     lng_max = lng + distance
@@ -72,15 +70,16 @@ def vicinity(geo_loc):
 def index():
     if request.method == 'POST':
         address = request.form['address']
-        user_loc = locations(address)
-        graffiti_locs = json.dumps(vicinity(user_loc))
-        return render_template('index.html', your_loc = user_loc,\
+        try:
+            user_loc = locations(address)
+            graffiti_locs = json.dumps(vicinity(user_loc))
+            return render_template('index.html', your_loc = user_loc,\
                                graffiti = graffiti_locs)
+        except:
+            error = 'Please type a valid Manhattan address'
+            render_template('index.html', error= error)
     else:
         return render_template('index.html')
 
 if __name__ == '__main__':
     app.run()
-
-    A
-    A
