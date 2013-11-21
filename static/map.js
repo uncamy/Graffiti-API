@@ -3,6 +3,7 @@
 /*var latlng= new google.maps.LatLng(document.getElementById("user_loc").innerHTML);*/
 
 var latlng = new google.maps.LatLng(lat,lng);
+/*graffiti_locations passed in*/
 
 function initialize(){
     var mapOptions = {
@@ -27,14 +28,17 @@ function initialize(){
         origin: new google.maps.Point(0,0)
     };
 
-    var location = new google.maps.LatLng(40.7236264, -73.9980549);
-    var graffiti_marker = new google.maps.Marker({
+
+    for(var i = 0; i<graffiti_loc.length; i++){
+        var = graffiti = locations[i];
+        var location = new google.maps.LatLng(graffiti[0], graffiti[1]);
+        var graffiti_marker = new google.maps.Marker({
         icon: image,
         position: location,
         title: "graffiti",
         map: map
     });
-
+}
 
 }
 google.maps.event.addDomListener(window, 'load', initialize);
