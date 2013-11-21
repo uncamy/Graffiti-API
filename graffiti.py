@@ -61,21 +61,19 @@ def vicinity(geo_loc):
     lat_min = lat - distance
     lng_max = lng + distance
     lng_min = lng - distance
-
+#pass in the df[] variables so that it can be tested
     #equalities
     nearby = df[df['lng']> lng_min] and df[df['lng'] <lng_max] \
-             and df[df['lat']> lat_min] and df[df['lng'] <lng_max]
-    graffiti = nearby['geocode']
+    and df[df['lat']> lat_min] and df[df['lng'] <lng_max]
+    graffiti = list(zip(nearby['lat'], nearby['lng']))
     return graffiti
-
-
 
 @app.route('/', methods = ['GET', 'POST'])
 def index():
     if request.method == 'POST':
         address = request.form['address']
         user_loc = locations(address)
-        graffiti_locs = vicinity(user_loc)
+        graffiti_locs = json.dumps(vicinity(user_loc))
         return render_template('index.html', your_loc = user_loc,\
                                graffiti = graffiti_locs)
     else:
@@ -83,3 +81,6 @@ def index():
 
 if __name__ == '__main__':
     app.run()
+
+    A
+    A

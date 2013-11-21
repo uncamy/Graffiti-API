@@ -55,22 +55,23 @@
           <br/>
           <input type = 'submit' value = 'Get Graffiti!' />
         </div>
-        {% if user_loc %}
-        <div id="user_loc">{{your_loc}}</div>
-        <script>
-          var lat = {{your_loc[0]}};
-          var lng = {{your_loc[1]}};
-          var graffiti_loc = new Array({{graffiti}});
-        </script>
-          <script src='/static/map.js'>
-      </script>
-      </div>
-      <hr>
-      </div>
-    <div id="map-container">
-    <div id="map-canvas">
-    </div>
-    </div>
+       </div>
+     </div>
+    {% if your_loc %}
+          <div id="user_loc">{{your_loc}}</div>
+          <script>
+            var lat = {{your_loc[0]}};
+            var lng = {{your_loc[1]}};
+            var graffiti_loc = {{graffiti}};
+          </script>
+          <script src='/static/map.js'></script>
+
+          <hr>
+
+          <div id="map-container">
+            <div id="map-canvas">
+            </div>
+          </div>
         {% endif %}
     <hr>
   </body>
