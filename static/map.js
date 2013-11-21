@@ -3,7 +3,7 @@
 /*var latlng= new google.maps.LatLng(document.getElementById("user_loc").innerHTML);*/
 
 var latlng = new google.maps.LatLng(lat,lng);
-/*graffiti_locations passed in*/
+/*graffiti_locations passed in as graffiti_loc*/
 
 function initialize(){
     var mapOptions = {
@@ -30,7 +30,7 @@ function initialize(){
 
 
     for(var i = 0; i<graffiti_loc.length; i++){
-        var = graffiti = locations[i];
+        var graffiti = graffiti_loc[i];
         var location = new google.maps.LatLng(graffiti[0], graffiti[1]);
         var graffiti_marker = new google.maps.Marker({
         icon: image,
