@@ -16,3 +16,20 @@ full4 = full3.append(f6)
 full5 = full4.append(f7)
 
 full5.to_csv('./geocoded_manhattan.csv')
+
+#process data to allow for calculations on lat/lng
+def fix_geocodes(sample):
+    print type(sample)
+    sample = sample.replace("(", "")
+    sample = sample.replace(")", "")
+    sample = sample.split(',')
+    lat  = float(sample[0])
+    lng = float(sample[1])
+    new_geo= (lat, lng)
+    return new_geo
+
+geo_pairs= df['geocode'].map(fix_geocodes)
+df['lat'] = geo_pairs.map(lambda x: x[0])
+df['lng'] = geo_pairs.map(lambda x: x[1])
+
+df.to_csv('./final_data.csv')
