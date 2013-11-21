@@ -15,7 +15,7 @@
     <style type="text/css">
       html { height: 100% }
       body { height: 100%; margin: 0; padding: 5% }
-      #map-canvas { height: 100% }
+      #mapcanvas { height: 100%}
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.14&key=AIzaSyBwOEBpE4aHJAcFhn5lv50FltT4SoWlvNg&sensor=false">
       type="text/javascript">
@@ -52,15 +52,15 @@
           <br/>
           <input type = 'submit' value = 'Get Graffiti!' />
         </div>
-      </div>
-     <div class-"col-md-8">
+
+          <div class-"col-md-8"> </div>
         {% if error %}
          <p> {{error}} </p>
       {% endif %}
 <hr/>
 <hr/>
       {% if your_loc %}
-        <div id="user_loc">{{your_loc}}</div>
+        Hello!
           <script>
             var lat = {{your_loc[0]}};
             var lng = {{your_loc[1]}};
