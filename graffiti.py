@@ -24,19 +24,7 @@ API_KEY = './api_key.txt'
 app = Flask(__name__)
 app.config.from_object(__name__)
 
-def fix_geocodes(sample):
-    print type(sample)
-    sample = sample.replace("(", "")
-    sample = sample.replace(")", "")
-    sample = sample.split(',')
-    lat  = float(sample[0])
-    lng = float(sample[1])
-    new_geo= (lat, lng)
-    return new_geo
 
-geo_pairs= df['geocode'].map(fix_geocodes)
-df['lat'] = geo_pairs.map(lambda x: x[0])
-df['lng'] = geo_pairs.map(lambda x: x[1])
 
 def geocode(address):
     try:
@@ -44,6 +32,8 @@ def geocode(address):
         return(lat_lon[0].coordinates)
     except:
         return 'unable to geocode'
+
+
 
 
 #test address
