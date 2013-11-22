@@ -1,81 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="utf-8">
-    <title>Graffiti API</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
-    rel="stylesheet">
-    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"
-    rel="stylesheet">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <style type="text/css">
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      #map-canvas { height: 100% }
-      #map-container { height: 100%}
-    </style>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.14&key=AIzaSyBwOEBpE4aHJAcFhn5lv50FltT4SoWlvNg&sensor=false">
-      type="text/javascript">
-      </script>
+<head>
+  <meta charset="utf-8">
+  <title>Graffiti API</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+  rel="stylesheet">
+  <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"
+  rel="stylesheet">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.14&key=AIzaSyBwOEBpE4aHJAcFhn5lv50FltT4SoWlvNg&sensor=false">
+  type="text/javascript">
+  </script>
 
-  </head>
+</head>
 
   <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
     >
     </script>
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"
-    >
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js">
     </script>
-    <div class="container pull-left">
-    </div>
-    <div class="form-group">
-      <label>
-        Amy Roberts Hacker School 2013
-      </label>
-    </div>
-    <div class="well">
-      <h3>Manhattan Graffiti Finder</h3>
-      <p>
-        See it before it's gone...&nbsp;
-      </p>
-    </div>
+
     <div class="container">
-      <div class="container">
-        <div class="form-group">
-          <label>
-            Type your address:
-          </label>
-          <form method= 'post' action= '/'>
-          <input type="text" name= "address" class="form-control" placeholder="e.g. 455 Broadway, New York, NY">
-          <br/>
-          <input type = 'submit' value = 'Get Graffiti!' />
-        </div>
-       </div>
-     </div>
-    {% if error %}
-      <p> {{error}} </p>
-    {% endif %}
-
-    {% if your_loc %}
-          <div id="user_loc">{{your_loc}}</div>
-          <script>
-            var lat = {{your_loc[0]}};
-            var lng = {{your_loc[1]}};
-            var graffiti_loc = {{graffiti}};
-          </script>
-          <script src='/static/map.js'></script>
-
-          <hr>
-
-          <div id="map-container">
-            <div id="map-canvas">
-            </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Amy Roberts Hacker School 2013</label>
+          <div class="well">
+            <h3>Manhattan Graffiti Finder</h3>
+            <p>See it before it's gone...&nbsp;</p>
           </div>
-    {% endif %}
-    <hr>
+        </div>
+      </div>  
+
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Type your address:</label>
+            <form method= 'post' action= '/'>
+              <input type="text" name= "address" class="form-control" placeholder="e.g. 455 Broadway, New York, NY">
+              <br/>
+              <input type = 'submit' value = 'Get Graffiti!' />
+            </form>
+          </div>  
+        </div>
+
+        <div class="col-md-9">
+          {% if error %}
+            <p> {{error}} </p>
+          {% endif %}
+
+          {% if your_loc %}
+            <div id="user_loc">{{your_loc}}</div>
+            <script>
+              var lat = {{your_loc[0]}};
+              var lng = {{your_loc[1]}};
+              var graffiti_loc = {{graffiti}};
+            </script>
+            <script src='/static/map.js'></script>
+            <div id="map-canvas" style="width:100%; height:600px;"></div>
+
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+
+
   </body>
+</html>
