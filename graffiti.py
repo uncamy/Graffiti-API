@@ -61,10 +61,17 @@ def vicinity(geo_loc):
     lng_min = lng - distance
 #pass in the df[] variables so that it can be tested
     #equalities
-    nearby = df[df['lng']> lng_min] and df[df['lng'] <lng_max] \
-    and df[df['lat']> lat_min] and df[df['lng'] <lng_max]
+    #nearby = df[df['lng']> lng_min] and df[df['lng'] <lng_max] \
+    #and df[df['lat']> lat_min] and df[df['lng'] <lng_max]
+    upper_lat = df[df['lat']].map(lambda x: x > lat_max)
+    lower_lat = df[df['lat']].map(lambda x: x < lat_min)
+    upper_lng = df[df['lng']].map(lambda x: x > lng_max)
+    lower_lng = df[df['lng']].map(lambda x: x < lng_min)
+    nearby = upper_lat & upper_lng & lower_lat & lower_lng
+
     graffiti = list(zip(nearby['lat'], nearby['lng']))
     return graffiti
+
 
 @app.route('/', methods = ['GET', 'POST'])
 def index():
