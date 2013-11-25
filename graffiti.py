@@ -11,9 +11,6 @@ import pandas as pd
 from pygeocoder import Geocoder
 from flask  import Flask, request, session, g, redirect, url_for,\
                   abort, render_template, flash, json
-from flask.ext import restful
-
-
 
 #configuration
 DEBUG = True
@@ -51,7 +48,7 @@ def locations(address):
 
 def vicinity(geo_loc):
 #there must be a better way to do this...
-    distance = 0.1
+    distance = 0.01
     lat = geo_loc[0]
     lng = geo_loc[1]
 
