@@ -3,7 +3,7 @@ Flask-RESTful==0.2.5
 Flask-SQLAlchemy==1.0
 Jinja2==2.7.1
 MarkupSafe==0.18
-Pygments==1.6
+Pygments==2.7.4
 SQLAlchemy==0.9.3
 
 WebOb==1.3
