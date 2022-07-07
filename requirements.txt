@@ -16,7 +16,7 @@ http==0.02
 itsdangerous==0.23
 logilab-common==0.60.0
 pygeocoder==1.2.1.1
-requests==2.0.1
+requests==2.20.0
 tornado==3.1.1
 urllib3==1.7.1
 virtualenv==1.10.1
