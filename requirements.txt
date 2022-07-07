@@ -14,7 +14,7 @@ googlemaps==1.0.2
 gunicorn==18.0
 http==0.02
 itsdangerous==0.23
-logilab-common==0.60.0
+logilab-common==0.61.0
 pygeocoder==1.2.1.1
 requests==2.0.1
 tornado==3.1.1
